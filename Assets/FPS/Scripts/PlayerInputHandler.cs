@@ -35,14 +35,17 @@ public class PlayerInputHandler : MonoBehaviour
 
     public bool CanProcessInput()
     {
-        return Cursor.lockState == CursorLockMode.Locked && !m_GameFlowManager.gameIsEnding;
+        return true;
+       // return Cursor.lockState == CursorLockMode.Locked && !m_GameFlowManager.gameIsEnding;
     }
 
     public Vector3 GetMoveInput()
     {
+        Debug.Log("call getmove input");
         if (CanProcessInput())
         {
             Vector3 move = new Vector3(Input.GetAxisRaw(GameConstants.k_AxisNameHorizontal), 0f, Input.GetAxisRaw(GameConstants.k_AxisNameVertical));
+            Debug.Log("move update! @getmoveinput");
 
             // constrain move input to a maximum magnitude of 1, otherwise diagonal movement might exceed the max move speed defined
             move = Vector3.ClampMagnitude(move, 1);
